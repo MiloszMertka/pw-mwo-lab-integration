@@ -1,0 +1,21 @@
+name: Integration
+run-name: Example app integration
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node.js and npm
+        uses: actions/setup-node@v3.8.1
+        with:
+          node-version: 20
+      - name: Install dependencies
+        run: npm install
+      - name: Test the app
+        run: npm run test:prod
